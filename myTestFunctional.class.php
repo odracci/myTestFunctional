@@ -31,11 +31,11 @@ class myTestFunctional extends sfTestFunctional {
      */
     public function isModuleAction($module, $action, $statusCode = 200) {
         $this->with('request')->begin()->
-        isParameter('module', $module)->
-        isParameter('action', $action)->
+			isParameter('module', $module)->
+			isParameter('action', $action)->
         end()->
         with('response')->begin()->
-        isStatusCode($statusCode)->
+			isStatusCode($statusCode)->
         end();
 
         return $this;
@@ -78,18 +78,7 @@ class myTestFunctional extends sfTestFunctional {
     /**
      * @return myTestFunctional
      */
-	public function checkRequestParameter($module, $action) {
-		return $this->get('/comunicati/index')->
-				with('request')->begin()->
-					isParameter('module', 'comunicati')->
-					isParameter('action', 'index')->
-				end();
-	}
-
-    /**
-     * @return myTestFunctional
-     */
-	public function checkForm($click, $name, $data, $hasError) {
+	public function checkForm($click, $name, $data, $hasError = false) {
 		return $this->click($click, array($name => $data))->
 			with('form')->begin()->
 				hasErrors($hasError)->
